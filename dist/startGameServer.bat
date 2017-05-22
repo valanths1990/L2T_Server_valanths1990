@@ -5,7 +5,7 @@ echo Starting L2Tenkai Game Server.
 echo.
 REM -------------------------------------
 REM Default parameters for a basic server.
-java -server -Xmx7048m -Xms3048m -Xmn512m -Xss128k -XX:PermSize=64m -XX:+UseThreadPriorities -XX:ParallelGCThreads=20 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:SurvivorRatio=6 -XX:TargetSurvivorRatio=75 -Xnoclassgc -XX:+AggressiveOpts -XX:+UseBiasedLocking -XX:+UseFastAccessorMethods -XX:+UseStringCache -XX:+OptimizeStringConcat -Djava.util.logging.manager=l2server.util.L2LogManager -cp ./../libs/*;l2jserver.jar l2server.gameserver.GameServer
+java -server -Xmx2G -Xms2G -Xmn512m -Xss128k -XX:+UseThreadPriorities -XX:ParallelGCThreads=20 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:SurvivorRatio=6 -XX:TargetSurvivorRatio=75 -Xnoclassgc -XX:+AggressiveOpts -XX:+UseBiasedLocking -XX:+UseFastAccessorMethods -XX:+OptimizeStringConcat -Djava.util.logging.manager=l2server.util.L2LogManager -cp ./libs/*;l2jserver.jar l2server.gameserver.Server
 REM
 REM If you have a big server and lots of memory, you could experiment for example with
 REM java -server -Xmx1536m -Xms1024m -Xmn512m -XX:PermSize=256m -XX:SurvivorRatio=8 -Xnoclassgc -XX:+AggressiveOpts
