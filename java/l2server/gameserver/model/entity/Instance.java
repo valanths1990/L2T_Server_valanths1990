@@ -30,7 +30,6 @@ import l2server.util.xml.XmlDocument;
 import l2server.util.xml.XmlNode;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;

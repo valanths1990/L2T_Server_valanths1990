@@ -16,7 +16,6 @@
 package l2server.gameserver.model;
 
 import gnu.trove.TIntObjectHashMap;
-import l2server.gameserver.model.actor.L2Character;
 import l2server.gameserver.model.actor.instance.L2PcInstance;
 import l2server.gameserver.stats.Stats;
 import l2server.gameserver.stats.funcs.FuncAdd;
