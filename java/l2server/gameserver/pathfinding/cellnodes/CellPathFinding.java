@@ -37,8 +37,6 @@ import java.util.logging.Level;
  */
 public class CellPathFinding extends PathFinding
 {
-	//ok works
-	
 	private BufferInfo[] _allBuffers;
 	private int _findSuccess = 0;
 	private int _findFails = 0;
