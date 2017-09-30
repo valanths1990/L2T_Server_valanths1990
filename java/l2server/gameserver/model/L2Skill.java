@@ -178,7 +178,7 @@ public abstract class L2Skill implements IChanceSkillTrigger
 	// base success chance
 	private final double _power;
 	private final double _pvpPower;
-	private final double _pvePower; //FIXME: remove?
+	private final double _pvePower;
 	private final double _stunPower;
 	private final int _magicLevel;
 	private final int _levelDepend;
@@ -1580,7 +1580,7 @@ public abstract class L2Skill implements IChanceSkillTrigger
 
 	}
 
-	public boolean checkCondition(L2Character activeChar, L2Object target, boolean itemOrWeapon)
+	public boolean checkCondition(L2Character activeChar, L2Object object, boolean itemOrWeapon)
 	{
 		if (activeChar.isGM() && !Config.GM_SKILL_RESTRICTION)
 		{
@@ -1607,14 +1607,12 @@ public abstract class L2Skill implements IChanceSkillTrigger
 			return true;
 		}
 
+		final L2Character target = (object instanceof L2Character) ? (L2Character) object : null;
 		for (Condition cond : preCondition)
 		{
 			Env env = new Env();
 			env.player = activeChar;
-			if (target instanceof L2Character) // TODO: object or char?
-			{
-				env.target = (L2Character) target;
-			}
+			env.target = target;
 			env.skill = this;
 
 			if (!cond.test(env))

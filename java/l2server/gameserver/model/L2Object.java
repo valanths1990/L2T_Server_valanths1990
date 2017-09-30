@@ -699,6 +699,15 @@ public abstract class L2Object
 	{
 		return null;
 	}
+	
+	/**
+	 * Verify if object is instance of L2PcInstance.
+	 * @return {@code true} if object is instance of L2PcInstance, {@code false} otherwise
+	 */
+	public boolean isPlayer()
+	{
+		return false;
+	}
 
 	/**
 	 * Sends the Server->Client info packet for the object.<br><br>

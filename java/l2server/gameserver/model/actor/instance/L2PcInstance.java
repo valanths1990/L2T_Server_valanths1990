@@ -22611,11 +22611,13 @@ public class L2PcInstance extends L2Playable
 
 		return false;
 	}
+	
+	@Override
+	public boolean isPlayer()
+	{
+		return true;
+	}
 
-	/***
-	 *
-	 * @return
-	 */
 	public final boolean isInsidePvpZone()
 	{
 		return isInsideZone(L2Character.ZONE_PVP) || isInsideZone(L2Character.ZONE_SIEGE);

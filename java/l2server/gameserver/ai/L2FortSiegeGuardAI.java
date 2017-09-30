@@ -491,57 +491,54 @@ public class L2FortSiegeGuardAI extends L2CharacterAI implements Runnable
 				continue;
 			}
 
-			if (npc.getAI() != null) // TODO: possibly check not needed
+			if (!npc.isDead() && Math.abs(target.getZ() - npc.getZ()) < 600
+					//&& _actor.getAttackByList().contains(getAttackTarget())
+					&& (npc.getAI()._intention == CtrlIntention.AI_INTENTION_IDLE ||
+					npc.getAI()._intention == CtrlIntention.AI_INTENTION_ACTIVE)
+					//limiting aggro for siege guards
+					&& target.isInsideRadius(npc, 1500, true, false) &&
+					GeoData.getInstance().canSeeTarget(npc, target))
 			{
-				if (!npc.isDead() && Math.abs(target.getZ() - npc.getZ()) < 600
-						//&& _actor.getAttackByList().contains(getAttackTarget())
-						&& (npc.getAI()._intention == CtrlIntention.AI_INTENTION_IDLE ||
-						npc.getAI()._intention == CtrlIntention.AI_INTENTION_ACTIVE)
-						//limiting aggro for siege guards
-						&& target.isInsideRadius(npc, 1500, true, false) &&
-						GeoData.getInstance().canSeeTarget(npc, target))
+				// Notify the L2Object AI with EVT_AGGRESSION
+				npc.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, getAttackTarget(), 1);
+				return;
+			}
+			// heal friends
+			if (_selfAnalysis.hasHealOrResurrect && !_actor.isAttackingDisabled() &&
+					npc.getCurrentHp() < npc.getMaxHp() * 0.6 && _actor.getCurrentHp() > _actor.getMaxHp() / 2 &&
+					_actor.getCurrentMp() > _actor.getMaxMp() / 2 && npc.isInCombat())
+			{
+				for (L2Skill sk : _selfAnalysis.healSkills)
 				{
-					// Notify the L2Object AI with EVT_AGGRESSION
-					npc.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, getAttackTarget(), 1);
-					return;
-				}
-				// heal friends
-				if (_selfAnalysis.hasHealOrResurrect && !_actor.isAttackingDisabled() &&
-						npc.getCurrentHp() < npc.getMaxHp() * 0.6 && _actor.getCurrentHp() > _actor.getMaxHp() / 2 &&
-						_actor.getCurrentMp() > _actor.getMaxMp() / 2 && npc.isInCombat())
-				{
-					for (L2Skill sk : _selfAnalysis.healSkills)
+					if (_actor.getCurrentMp() < sk.getMpConsume())
 					{
-						if (_actor.getCurrentMp() < sk.getMpConsume())
-						{
-							continue;
-						}
-						if (_actor.isSkillDisabled(sk))
-						{
-							continue;
-						}
-						if (!Util.checkIfInRange(sk.getCastRange(), _actor, npc, true))
-						{
-							continue;
-						}
-
-						int chance = 4;
-						if (chance >= Rnd.get(100)) // chance
-						{
-							continue;
-						}
-						if (!GeoData.getInstance().canSeeTarget(_actor, npc))
-						{
-							break;
-						}
-
-						L2Object OldTarget = _actor.getTarget();
-						_actor.setTarget(npc);
-						clientStopMoving(null);
-						_actor.doCast(sk, false);
-						_actor.setTarget(OldTarget);
-						return;
+						continue;
 					}
+					if (_actor.isSkillDisabled(sk))
+					{
+						continue;
+					}
+					if (!Util.checkIfInRange(sk.getCastRange(), _actor, npc, true))
+					{
+						continue;
+					}
+
+					int chance = 4;
+					if (chance >= Rnd.get(100)) // chance
+					{
+						continue;
+					}
+					if (!GeoData.getInstance().canSeeTarget(_actor, npc))
+					{
+						break;
+					}
+
+					L2Object OldTarget = _actor.getTarget();
+					_actor.setTarget(npc);
+					clientStopMoving(null);
+					_actor.doCast(sk, false);
+					_actor.setTarget(OldTarget);
+					return;
 				}
 			}
 		}
