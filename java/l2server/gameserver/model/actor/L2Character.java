@@ -4019,16 +4019,13 @@ public abstract class L2Character extends L2Object
 		}
 
 		// if this is a player instance, start the grace period for this character (grace from mobs only)!
-		if (this instanceof L2PcInstance)
+		if (isPlayer())
 		{
-			((L2PcInstance) this).setIsFakeDeath(false);
-			((L2PcInstance) this).setRecentFakeDeath(true);
+			getActingPlayer().setIsFakeDeath(false);
+			getActingPlayer().setRecentFakeDeath(true);
 		}
 
-		ChangeWaitType revive = new ChangeWaitType(this, ChangeWaitType.WT_STOP_FAKEDEATH);
-		broadcastPacket(revive);
-		//TODO: Temp hack: players see FD on ppl that are moving: Teleport to someone who uses FD - if he gets up he will fall down again for that client -
-		// even tho he is actually standing... Probably bad info in CharInfo packet?
+		broadcastPacket(new ChangeWaitType(this, ChangeWaitType.WT_STOP_FAKEDEATH));
 		broadcastPacket(new Revive(this));
 	}
 
