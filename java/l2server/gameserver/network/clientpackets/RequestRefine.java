@@ -12,7 +12,6 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package l2server.gameserver.network.clientpackets;
 
 import l2server.gameserver.datatables.LifeStoneTable;
@@ -28,11 +27,7 @@ import l2server.gameserver.network.serverpackets.ShortCutRegister;
 import l2server.gameserver.network.serverpackets.StatusUpdate;
 import l2server.gameserver.network.serverpackets.SystemMessage;
 
-/**
- * Format:(ch) dddd
- *
- * @author -Wooden-
- */
+
 public final class RequestRefine extends L2GameClientPacket
 {
 	private int _targetItemObjId;
@@ -49,8 +44,6 @@ public final class RequestRefine extends L2GameClientPacket
 		_gemStoneCount = readQ();
 	}
 
-	/**
-	 */
 	@Override
 	protected void runImpl()
 	{
