@@ -12,7 +12,6 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package l2server.gameserver.network.clientpackets;
 
 import l2server.Config;
@@ -27,11 +26,6 @@ import l2server.gameserver.network.serverpackets.SystemMessage;
 import l2server.gameserver.templates.item.L2Item;
 import l2server.gameserver.util.Util;
 
-/**
- * Format(ch) d
- *
- * @author -Wooden-
- */
 public final class RequestRefineCancel extends L2GameClientPacket
 {
 	private int _targetItemObjId;
@@ -42,8 +36,6 @@ public final class RequestRefineCancel extends L2GameClientPacket
 		_targetItemObjId = readD();
 	}
 
-	/**
-	 */
 	@Override
 	protected void runImpl()
 	{
