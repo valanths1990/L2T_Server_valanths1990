@@ -264,8 +264,7 @@ public class CustomAuctionManager
 			_endAuctionTask = ThreadPoolManager.getInstance().scheduleGeneral(new CurrentAuctionEnd(), remainingTime);
 		}
 
-		@SuppressWarnings("unused")
-		public int getId()
+		private int getId()
 		{
 			return _id;
 		}

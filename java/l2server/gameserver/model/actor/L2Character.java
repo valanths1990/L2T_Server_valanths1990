@@ -29,6 +29,7 @@ import l2server.gameserver.datatables.MapRegionTable;
 import l2server.gameserver.datatables.MapRegionTable.TeleportWhereType;
 import l2server.gameserver.datatables.SkillTable;
 import l2server.gameserver.events.Curfew;
+import l2server.gameserver.events.Elpy;
 import l2server.gameserver.events.instanced.EventInstance;
 import l2server.gameserver.events.instanced.EventInstance.EventType;
 import l2server.gameserver.handler.ISkillHandler;
@@ -1459,7 +1460,7 @@ public abstract class L2Character extends L2Object
 
 		boolean hitted = doAttackHitSimple(attack, target, 100, sAtk);
 		int percentLostPerTarget = 15;
-		if (Config.isServer(Config.TENKAI_ESTHUS) && target instanceof L2MonsterInstance)
+		if (Config.isServer(Config.TENKAI_VASPER) && target instanceof L2MonsterInstance)
 		{
 			percentLostPerTarget = 50;
 		}
@@ -4019,13 +4020,16 @@ public abstract class L2Character extends L2Object
 		}
 
 		// if this is a player instance, start the grace period for this character (grace from mobs only)!
-		if (isPlayer())
+		if (this instanceof L2PcInstance)
 		{
-			getActingPlayer().setIsFakeDeath(false);
-			getActingPlayer().setRecentFakeDeath(true);
+			((L2PcInstance) this).setIsFakeDeath(false);
+			((L2PcInstance) this).setRecentFakeDeath(true);
 		}
 
-		broadcastPacket(new ChangeWaitType(this, ChangeWaitType.WT_STOP_FAKEDEATH));
+		ChangeWaitType revive = new ChangeWaitType(this, ChangeWaitType.WT_STOP_FAKEDEATH);
+		broadcastPacket(revive);
+		//TODO: Temp hack: players see FD on ppl that are moving: Teleport to someone who uses FD - if he gets up he will fall down again for that client -
+		// even tho he is actually standing... Probably bad info in CharInfo packet?
 		broadcastPacket(new Revive(this));
 	}
 
@@ -6186,6 +6190,15 @@ public abstract class L2Character extends L2Object
 	 */
 	public void onHitTimer(L2Character target, int damage, boolean crit, boolean miss, double soulshot, byte shld, boolean wasHeavyPunch)
 	{
+		//Event
+		if (Elpy.state == Elpy.State.ACTIVE && Elpy.elpy.containsKey(this.getObjectId()) && Elpy.elpy.containsKey(target.getObjectId()))
+		{
+			L2PcInstance player = (L2PcInstance) this;
+			L2PcInstance victim = (L2PcInstance) target;
+			Elpy.getInstance().onAttack(player, victim);
+			victim.sendMessage("You received 1 damage from " + player.getName());
+			return;
+		}
 		// If the attacker/target is dead or use fake death, notify the AI with EVT_CANCEL
 		// and send a Server->Client packet ActionFailed (if attacker is a L2PcInstance)
 		if (target == null || isAlikeDead())

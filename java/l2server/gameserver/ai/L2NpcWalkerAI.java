@@ -15,6 +15,9 @@
 
 package l2server.gameserver.ai;
 
+import java.util.List;
+import java.util.concurrent.ScheduledFuture;
+
 import l2server.Config;
 import l2server.gameserver.ThreadPoolManager;
 import l2server.gameserver.model.L2CharPosition;
@@ -24,9 +27,6 @@ import l2server.gameserver.model.actor.L2Npc;
 import l2server.gameserver.model.actor.instance.L2PcInstance;
 import l2server.gameserver.model.quest.Quest;
 import l2server.log.Log;
-
-import java.util.List;
-import java.util.concurrent.ScheduledFuture;
 
 public class L2NpcWalkerAI extends L2CharacterAI implements Runnable
 {

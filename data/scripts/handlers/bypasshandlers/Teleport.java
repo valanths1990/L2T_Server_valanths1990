@@ -95,9 +95,11 @@ public class Teleport implements IBypassHandler
 			}
 		}
 		else if (command.startsWith("pvpzone"))
+
 		{
 			boolean parties = st.nextToken().equals("1");
 			boolean artificialPlayers = st.nextToken().equals("1");
+
 
 			if (!parties && activeChar.isInParty() && !activeChar.isGM())
 			{
@@ -158,8 +160,7 @@ public class Teleport implements IBypassHandler
 					}
 				}
 
-				activeChar.teleToLocation(mostPvP.getX() + Rnd.get(300) - 150, mostPvP.getY() + Rnd.get(300) - 150,
-						mostPvP.getZ());
+				activeChar.teleToLocation(mostPvP.getX() + Rnd.get(300) - 150, mostPvP.getY() + Rnd.get(300) - 150, mostPvP.getZ());
 				activeChar.setInstanceId(0);
 				activeChar.setProtection(true);
 				if (!activeChar.isGM())
@@ -176,8 +177,11 @@ public class Teleport implements IBypassHandler
 
 			return true;
 		}
+
+
 		return false;
 	}
+
 
 	@Override
 	public String[] getBypassList()

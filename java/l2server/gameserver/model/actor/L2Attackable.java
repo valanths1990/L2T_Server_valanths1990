@@ -365,13 +365,13 @@ public class L2Attackable extends L2Npc
 	{
 		setStatus(new AttackableStatus(this));
 	}
-	
+
 	@Override
 	protected L2CharacterAI initAI()
 	{
 		return new L2AttackableAI(this);
 	}
-	
+
 	/**
 	 * Not used.
 	 * get condition to hate, actually isAggressive() is checked by monster and karma by guards in motheds that overwrite this one.
@@ -2007,10 +2007,7 @@ public class L2Attackable extends L2Npc
 
 		for (GlobalDropCategory drop : GlobalDropTable.getInstance().getGlobalDropCategories())
 		{
-			if (getNpcId() == 50101)
-			{
-				break;
-			}
+		
 
 			RewardItem item = null;
 			int random = Rnd.get(100000);

@@ -4856,7 +4856,7 @@
         <set name="effectRange" val="1600" />
         <set name="isDebuff" val="true" />
         <for>
-            <abnormal duration="#duration" landRate="90" stackLvl="3" stackType="md_down">
+            <abnormal duration="#duration" landRate="110" stackLvl="3" stackType="md_down">
                 <effect type="Debuff" val="0" />
                 <subPercent stat="mDef" val="#mDef" />
                 <sub stat="fireRes" val="#elemWeakness" />
@@ -12144,7 +12144,7 @@
         <set name="reuseDelay" val="3000" />
         <set name="isDebuff" val="false" />
         <for>
-            <abnormal duration="15" stackLvl="3" stackType="pa_down">
+            <abnormal duration="5" stackLvl="3" stackType="pa_down">
                 <effect type="Debuff" val="0" />
                 <subPercent stat="pAtk" val="40" />
                 <subPercent stat="pDef" val="40" />

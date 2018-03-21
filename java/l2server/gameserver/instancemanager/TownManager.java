@@ -51,6 +51,7 @@ public class TownManager
 			}
 		}
 
+
 		int mapRegion = MapRegionTable.getInstance()
 				.getMapRegion(activeObject.getPosition().getX(), activeObject.getPosition().getY());
 		switch (mapRegion)

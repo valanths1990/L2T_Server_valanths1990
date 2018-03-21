@@ -990,6 +990,7 @@ public class L2Npc extends L2Character
 		return CastleManager.getInstance().getCastles().get(_castleIndex);
 	}
 
+	
 	/**
 	 * Return closest castle in defined distance
 	 *
@@ -1463,6 +1464,7 @@ public class L2Npc extends L2Character
 			}
 			html.replace("%pker%", pker);
 		}
+
 		else if (npcId == 40004 && val.equals("main_towns"))
 		{
 			html.replace("%nextTowns%", MainTownManager.getInstance().getNextTownsInfo());
@@ -1479,6 +1481,19 @@ public class L2Npc extends L2Character
 				html.replace("%currentMainTown%", "");
 			}
 		}
+		else if (npcId == 40017)
+		{
+			MainTownInfo mainTown = MainTownManager.getInstance().getCurrentMainTown();
+			if (mainTown != null)
+			{
+				html.replace("%currentMainTown%", "(" + mainTown.getName() + ")");
+			}
+			else
+			{
+				html.replace("%currentMainTown%", "");
+			}
+		}
+
 		else if (npcId == 80001) // Astrake
 		{
 			int[] EPIC_BOSSES = {

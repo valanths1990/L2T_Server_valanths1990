@@ -33,6 +33,7 @@ import l2server.gameserver.network.SystemMessageId;
  */
 public abstract class L2PlayableAI extends L2CharacterAI
 {
+
 	public L2PlayableAI(L2Character creature)
 	{
 		super(creature);

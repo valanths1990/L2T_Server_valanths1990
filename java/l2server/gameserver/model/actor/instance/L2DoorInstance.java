@@ -321,7 +321,6 @@ public class L2DoorInstance extends L2Character
 		// Attackable  only during siege by everyone (not owner)
 		boolean isCastle = getCastle() != null && getCastle().getCastleId() > 0 && getCastle().getZone().isActive();
 		boolean isFort = getFort() != null && getFort().getFortId() > 0 && getFort().getZone().isActive();
-		@SuppressWarnings("unused")
 		int activeSiegeId =
 				getFort() != null ? getFort().getFortId() : getCastle() != null ? getCastle().getCastleId() : 0;
 		L2PcInstance actingPlayer = attacker.getActingPlayer();

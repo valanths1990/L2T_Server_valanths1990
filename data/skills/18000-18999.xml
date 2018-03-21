@@ -2547,9 +2547,35 @@
 		Level 6: P. Def. + 15%. Received Physical Critical Damage - 25%, 15% chance of reflecting physical abnormal states.
 	-->
     <skill id="18444" levels="6" name="Physical Reflect Shirt Enchant Effect">
-        <set name="target" val="TARGET_NONE" />
-        <set name="skillType" val="NOTDONE" />
+        <table name="#pDef">5 6 8 10 12 15</table>
+        <table name="#critVuln">0 8 12 16 20 25</table>
+        <table name="#reflectDebuffs">0 0 7 9 12 15</table>
+        <table name="#stats">1 2 3 3 4 4</table>
+        <table name="#spd">7 7 7 7 7 7</table>
+        <table name="#maxHp">0 0 0 510 520 531 536 541 547 552</table>
+        <table name="#elementRes">0 0 0 6 12 18 24 30 36 42</table>
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
         <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <addPercent stat="pDef" val="#pDef" />
+            <subPercent stat="critVuln" val="#critVuln" />
+            <addPercent stat="reflectDebuffs" val="#reflectDebuffs" />
+            <add stat="runSpd" val="#spd" />
+            <add stat="maxHp" val="#maxHp" />
+            <baseAdd stat="STR" val="#stats" />
+            <baseAdd stat="DEX" val="#stats" />
+            <baseAdd stat="CON" val="#stats" />
+            <baseAdd stat="INT" val="#stats" />
+            <baseAdd stat="WIT" val="#stats" />
+            <baseAdd stat="MEN" val="#stats" />
+            <add stat="waterRes" val="#elementRes" />
+            <add stat="fireRes" val="#elementRes" />
+            <add stat="windRes" val="#elementRes" />
+            <add stat="earthRes" val="#elementRes" />
+            <add stat="holyRes" val="#elementRes" />
+            <add stat="darkRes" val="#elementRes" />
+        </for>
     </skill>
     <!--
 		Level 1: M. Def. + 5%.
@@ -2560,9 +2586,37 @@
 		Level 6: M. Def. + 15%. Received Magic Critical Damage - 25%, 15% chance of reflecting magical abnormal states.
 	-->
     <skill id="18445" levels="6" name="Magical Reflect Shirt Enchant Effect">
-        <set name="target" val="TARGET_NONE" />
-        <set name="skillType" val="NOTDONE" />
+        <table name="#mDefP">5 6 8 10 12 15</table>
+        <table name="#magicCritVuln">0 8 12 16 20 25</table>
+        <table name="#reflectDebuffs">0 0 7 9 12 15</table>
+        <table name="#stats">1 2 3 3 4 4</table>
+        <table name="#spd">7 7 7 7 7 7</table>
+        <table name="#mDef">9 10 11 12 13 14 15 16 17 18</table>
+        <table name="#maxHp">0 0 0 510 520 531 536 541 547 552</table>
+        <table name="#elementRes">0 0 0 6 12 18 24 30 36 42</table>
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
         <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <addPercent stat="mDef" val="#mDefP" />
+            <subPercent stat="magicCritVuln" val="#magicCritVuln" />
+            <addPercent stat="reflectDebuffs" val="#reflectDebuffs" />
+            <add stat="mDef" val="#mDef" />
+            <add stat="runSpd" val="#spd" />
+            <add stat="maxHp" val="#maxHp" />
+            <baseAdd stat="STR" val="#stats" />
+            <baseAdd stat="DEX" val="#stats" />
+            <baseAdd stat="CON" val="#stats" />
+            <baseAdd stat="INT" val="#stats" />
+            <baseAdd stat="WIT" val="#stats" />
+            <baseAdd stat="MEN" val="#stats" />
+            <add stat="waterRes" val="#elementRes" />
+            <add stat="fireRes" val="#elementRes" />
+            <add stat="windRes" val="#elementRes" />
+            <add stat="earthRes" val="#elementRes" />
+            <add stat="holyRes" val="#elementRes" />
+            <add stat="darkRes" val="#elementRes" />
+        </for>
     </skill>
     <!-- M. Def. + 8. -->
     <skill id="18446" levels="1" name="Reflect Shirt Basic Effect">
@@ -3318,8 +3372,9 @@
 		Level 6: For 15 sec, create a protection shield that absorbs 50000 damage and recovers 15% of Max HP instantly.
 	-->
     <skill id="18565" levels="6" name="Greater Tanzanite - Barrier">
-        <table name="#duration">5 5 10 10 15</table>
-        <table name="#damage">5000 10000 15000 30000 50000</table>
+        <table name="#duration">5 5 10 10 15 15</table>
+        <table name="#damage">5000 10000 15000 30000 50000 50000</table>
+        <table name="#Heal"> 0 0 0 0 0 15</table>
         <table name="#name">Tanzanite - Barrier;Tanzanite - Barrier;Tanzanite - Barrier;Tanzanite - Barrier;Tanzanite -
             Barrier;Greater Tanzanite - Barrier
         </table>
@@ -3327,6 +3382,7 @@
         <set name="target" val="TARGET_SELF" />
         <set name="skillType" val="BUFF" />
         <set name="operateType" val="OP_ACTIVE" />
+        <set name="power" val="10" />
         <set name="hitTime" val="1000" />
         <set name="coolTime" val="500" />
         <set name="reuseDelay" val="180000" />
@@ -3336,6 +3392,7 @@
         <for>
             <abnormal duration="#duration" stackLvl="1" stackType="dmg_barrier" visualEffect="invincible">
                 <effect type="Invincible" val="0" />
+                <effect type="HealPercent" val="#Heal" />
             </abnormal>
         </for>
     </skill>
@@ -3364,6 +3421,7 @@
 	-->
     <skill id="18567" levels="2" name="Greater Garnet - Cancel Debuffs">
         <table name="#name">Garnet - Purge;Greater Garnet - Cancel Debuffs</table>
+        <table name="#time">0 7</table>
         <set name="name" val="#name" />
         <set name="target" val="TARGET_SELF" />
         <set name="skillType" val="BUFF" />
@@ -3375,8 +3433,9 @@
         <set name="excludedFromCheck" val="true" />
         <set name="canBeUsedWhenDisabled" val="true" />
         <for>
-            <abnormal>
+            <abnormal duration="7" stackLvl="2" stackType="abnormal_immunity">
                 <effect type="CancelDebuff" val="0" />
+                <set stat="debuffImmunity" val="5" />
             </abnormal>
         </for>
     </skill>
@@ -3390,10 +3449,19 @@
 	-->
     <skill id="18568" levels="6" name="Greater Vital Stone">
         <table name="#name">Vital Stone;Vital Stone;Vital Stone;Vital Stone;Vital Stone;Greater Vital Stone</table>
+        <table name="#vitality"> 3 6 12 20 30 30</table>
+        <table name="#rExp"> 0 0 0 0 0 15</table>
         <set name="name" val="#name" />
-        <set name="target" val="TARGET_NONE" />
-        <set name="skillType" val="NOTDONE" />
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
         <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <abnormal stackLvl="9" stackType="vp_up" visualEffect="vitality">
+                <effect type="Buff" val="0" />
+                <sub stat="vitalityConsumeRate" val="#vitality" />
+                <add stat="rExp" val="#rExp" />
+            </abnormal>
+        </for>
     </skill>
     <skill id="18570" levels="1" name="Function Test Item">
         <set name="target" val="TARGET_NONE" />
@@ -3407,40 +3475,172 @@
         <set name="skillType" val="NOTDONE" />
         <set name="operateType" val="OP_ACTIVE" />
     </skill>
-    <!-- Soulshot damage + 20% / Patk +9%. -->
-    <skill id="18715" levels="1" name="Ruby">
+    <!-- Crafted - Body -->
+    <skill id="18654" levels="1" name="Craft Effect - Body">
         <set name="target" val="TARGET_SELF" />
         <set name="skillType" val="BUFF" />
         <set name="operateType" val="OP_PASSIVE" />
         <for>
-            <mul val='1.09' order='0x10' stat='pAtk'/>
+            <addPercent stat="maxHp" val="5" />
+        </for>
+    </skill>
+    <!-- Crafted - Mind -->
+    <skill id="18655" levels="1" name="Craft Effect - Mind">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <subPercent stat="pReuse" val="3" />
+            <subPercent stat="mReuse" val="3" />
+        </for>
+    </skill>
+    <!-- Crafted - Barrier -->
+    <skill id="18656" levels="1" name="Craft Effect - Barrier">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <subPercent stat="fixedDmgVuln" val="5" />
+        </for>
+    </skill>
+    <!-- Crafted - Shield -->
+    <skill id="18657" levels="1" name="Craft Effect - Shield">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <addPercent stat="pDef" val="4" />
+        </for>
+    </skill>
+    <!-- Crafted - Earth -->
+    <skill id="18658" levels="1" name="Craft Effect - Earth">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <addPercent stat="mDef" val="4" />
+        </for>
+    </skill>
+    <!-- Crafted - Pure -->
+    <skill id="18659" levels="1" name="Craft Effect - Pure">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <addPercent stat="fireRes" val="25" />
+            <addPercent stat="waterRes" val="25" />
+            <addPercent stat="windRes" val="25" />
+            <addPercent stat="earthRes" val="25" />
+            <addPercent stat="holyRes" val="25" />
+            <addPercent stat="darkRes" val="25" />
+        </for>
+    </skill>
+    <!-- Crafted - STR -->
+    <skill id="18660" levels="1" name="Craft Effect - STR">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <baseAdd stat="STR" val="2" />
+        </for>
+    </skill>
+    <!-- Crafted - Int -->
+    <skill id="18661" levels="1" name="Craft Effect - INT">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <baseAdd stat="INT" val="2" />
+        </for>
+    </skill>
+    <!-- Crafted - Con -->
+    <skill id="18662" levels="1" name="Craft Effect - CON">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <baseAdd stat="CON" val="2" />
+        </for>
+    </skill>
+    <skill id="18713" levels="6" name="Greater Red Cat's Eye">
+        <table name="#pCritDmg">1 2 4 7 12 12</table>
+        <table name="#physicalSkillPower">0 0 0 0 0 5</table>
+        <table name="#pSkillCritDmg">0 0 0 0 12 12</table>
+        <table name="#name">Red Cat's Eye;Red Cat's Eye;Red Cat's Eye;Red Cat's Eye;Red Cat's Eye;Greater Red Cat's Eye
+        </table>
+        <set name="name" val="#name" />
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <addPercent stat="pCritDmg" val="#pCritDmg" />
+            <addPercent stat="physicalSkillPower" val="#physicalSkillPower" />
+            <addPercent stat="pSkillCritDmg" val="#pSkillCritDmg" />
+        </for>
+    </skill>
+    <skill id="18714" levels="6" name="Greater Blue Cat's Eye">
+        <table name="#mCritDmg">1 2 4 7 12 12</table>
+        <table name="#mSkillPower">0 0 0 0 0 5</table>
+        <table name="#name">Blue Cat's Eye;Blue Cat's Eye;Blue Cat's Eye;Blue Cat's Eye;Blue Cat's Eye;Greater Blue Cat's Eye
+        </table>
+        <set name="name" val="#name" />
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <addPercent stat="mCritDmg" val="#mCritDmg" />
+            <addPercent stat="mSkillPower" val="#mSkillPower" />
+        </for>
+    </skill>
+    <!-- Soulshot damage + 20% / Patk +9%. -->
+    <!-- Soulshot damage + 20% / Patk +9%. -->
+    <skill id="18715" levels="1" name="Ruby">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="DUMMY" />
+        <set name="operateType" val="OP_ACTIVE" />
+    </skill>
+    <!-- Soulshot damage + 20% / Patk +9%. -->
+    <!-- Soulshot damage + 20% / Patk +9%. -->
+    <skill id="18716" levels="1" name="Ruby">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="DUMMY" />
+        <set name="operateType" val="OP_ACTIVE" />
+    </skill>
+    <!-- Soulshot damage + 20% / Patk +9%. -->
+    <!-- Soulshot damage + 20% / Patk +9%. -->
+    <skill id="18717" levels="1" name="Ruby">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="BUFF" />
+        <set name="operateType" val="OP_PASSIVE" />
+        <for>
+            <addPercent val="9" stat="pAtk" />
         </for>
     </skill>
     <!--  Blessed Soulshot damage + 20% / mAtk + 9%. -->
-    <skill id="18718" levels="2" name="Sapphire">
-        <table name="#mAtk">9 9 9 9 9 9</table>
+    <skill id="18718" levels="1" name="Sapphire">
+        <set name="target" val="TARGET_SELF" />
+        <set name="skillType" val="DUMMY" />
+        <set name="operateType" val="OP_ACTIVE" />
+    </skill>
+    <!--  Blessed Soulshot damage + 20% / mAtk + 13%. -->
+    <skill id="18719" levels="1" name="Sapphire">
         <set name="target" val="TARGET_SELF" />
         <set name="skillType" val="BUFF" />
         <set name="operateType" val="OP_PASSIVE" />
         <set name="magicLvl" val="1" />
         <for>
-            <mul val="1.09" order="0x30" stat="mAtk" />
+            <addPercent val="13" stat="mAtk" />
         </for>
     </skill>
-    <skill id="18720" levels="1" name="Obsidian">
+    <skill id="18720" levels="1" name="Obsidian_Disp">
         <set name="target" val="TARGET_SELF" />
-        <set name="targetDirection" val="AROUND" />
-        <set name="skillType" val="DEBUFF" />
+        <set name="skillType" val="BUFF" />
         <set name="operateType" val="OP_ACTIVE" />
         <set name="hitTime" val="800" />
-        <set name="coolTime" val="15000" />
-        <set name="reuseDelay" val="15000" />
-        <set name="skillRadius" val="1500" />
+        <set name="reuseDelay" val="180000" />
+        <set name="staticReuse" val="true" />
         <for>
-            <abnormal stackLvl="1" stackType="flash">
-                <effect type="RemoveTarget" val="0" />
-            </abnormal>
-            <abnormal duration="1" self="1" stackLvl="1" stackType="flash">
+            <abnormal  duration="1" self="1" landRate="20">
                 <effect type="Untargetable" val="0" />
             </abnormal>
         </for>

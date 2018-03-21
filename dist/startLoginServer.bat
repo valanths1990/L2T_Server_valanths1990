@@ -3,7 +3,7 @@ title Login Server Console
 :start
 echo Starting L2Tenkai Login Server.
 echo.
-java -Xms128m -Xmx128m  -cp ./libs/*;l2jserver.jar l2server.loginserver.L2LoginServer
+java -Xms128m -Xmx128m  -cp ./../libs/*;l2jlogin.jar l2server.loginserver.L2LoginServer
 if ERRORLEVEL 2 goto restart
 if ERRORLEVEL 1 goto error
 goto end

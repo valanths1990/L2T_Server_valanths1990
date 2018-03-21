@@ -178,7 +178,7 @@ public abstract class L2Skill implements IChanceSkillTrigger
 	// base success chance
 	private final double _power;
 	private final double _pvpPower;
-	private final double _pvePower;
+	private final double _pvePower; //FIXME: remove?
 	private final double _stunPower;
 	private final int _magicLevel;
 	private final int _levelDepend;

@@ -87,6 +87,7 @@ import l2server.gameserver.datatables.TeleportLocationTable;
 import l2server.gameserver.datatables.UITable;
 import l2server.gameserver.events.DamageManager;
 import l2server.gameserver.events.LotterySystem;
+import l2server.gameserver.events.Ranked2v2;
 import l2server.gameserver.events.RankingKillInfo;
 import l2server.gameserver.events.instanced.EventsManager;
 import l2server.gameserver.geoeditorcon.GeoEditorListener;
@@ -108,7 +109,6 @@ import l2server.gameserver.instancemanager.ClanHallManager;
 import l2server.gameserver.instancemanager.ClanRecruitManager;
 import l2server.gameserver.instancemanager.CoupleManager;
 import l2server.gameserver.instancemanager.CursedWeaponsManager;
-import l2server.gameserver.instancemanager.CustomAuctionManager;
 import l2server.gameserver.instancemanager.CustomOfflineBuffersManager;
 import l2server.gameserver.instancemanager.CustomWorldAltars;
 import l2server.gameserver.instancemanager.DayNightSpawnManager;
@@ -124,8 +124,6 @@ import l2server.gameserver.instancemanager.InstanceManager;
 import l2server.gameserver.instancemanager.ItemAuctionManager;
 import l2server.gameserver.instancemanager.ItemsOnGroundManager;
 import l2server.gameserver.instancemanager.MailManager;
-import l2server.gameserver.instancemanager.MainTownManager;
-import l2server.gameserver.instancemanager.MentorManager;
 import l2server.gameserver.instancemanager.MercTicketManager;
 import l2server.gameserver.instancemanager.OfflineAdminCommandsManager;
 import l2server.gameserver.instancemanager.PartySearchManager;
@@ -254,7 +252,7 @@ public class Server
 		RecipeController.getInstance();
 		ArmorSetsTable.getInstance();
 		FishTable.getInstance();
-		if (Config.isServer(Config.TENKAI_ESTHUS))
+		if (Config.isServer(Config.TENKAI_VASPER))
 		{
 			EnchantMultiSellTable.getInstance();
 		}
@@ -269,7 +267,7 @@ public class Server
 		RaidBossPointsManager.getInstance();
 		PetDataTable.getInstance();
 		PartySearchManager.getInstance();
-		MentorManager.getInstance();
+		//MentorManager.getInstance();
 		BeautyTable.getInstance();
 		ScenePlayerDataTable.getInstance();
 		CompoundTable.getInstance();
@@ -316,7 +314,7 @@ public class Server
 		GrandBossManager.getInstance().initZones();
 		FourSepulchersManager.getInstance().init();
 		EventDroplist.getInstance();
-		MainTownManager.getInstance();
+		//MainTownManager.getInstance();
 
 		printSection("Siege");
 		SiegeManager.getInstance().getSieges();
@@ -459,13 +457,19 @@ public class Server
 
 		if (Config.isServer(Config.TENKAI))
 		{
+			printSection("Events");
 			//HiddenChests.getInstance().spawnChests();
 			//CloneInvasion.getInstance().scheduleEventStart();
 			//MonsterInvasion.getInstance().scheduleEventStart();
 			//Curfew.getInstance().scheduleEventStart();
 			//ChessEvent.start();
 
-			//LasTravel
+			//LasTravel + Inia
+			//stopRanked.getInstance().scheduleEventStart();
+			//PvpZone.getInstance();
+			//RandomFight.getInstance();
+            Ranked1v1.getInstance();
+			Ranked2v2.getInstance();
 			CustomCommunityBoard.getInstance();
 			GMEventManager.getInstance();
 		}
@@ -494,14 +498,7 @@ public class Server
 
 		if (Config.ENABLE_CUSTOM_AUCTIONS)
 		{
-			if (Config.isServer(Config.TENKAI))
-			{
-				TenkaiAuctionManager.getInstance();
-			}
-			else
-			{
-				CustomAuctionManager.getInstance();
-			}
+			TenkaiAuctionManager.getInstance();
 		}
 
 		if (Config.ENABLE_CUSTOM_LOTTERY)

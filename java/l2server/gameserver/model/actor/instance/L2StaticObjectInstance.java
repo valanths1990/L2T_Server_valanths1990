@@ -19,7 +19,9 @@
 package l2server.gameserver.model.actor.instance;
 
 import l2server.gameserver.ai.L2CharacterAI;
+import l2server.gameserver.model.L2CharPosition;
 import l2server.gameserver.model.L2ItemInstance;
+import l2server.gameserver.model.L2Skill;
 import l2server.gameserver.model.actor.L2Character;
 import l2server.gameserver.model.actor.knownlist.StaticObjectKnownList;
 import l2server.gameserver.model.actor.stat.StaticObjStat;

@@ -348,8 +348,7 @@ public class Teredor extends L2AttackableAIScript
                         {
                             world.rewardedPlayers.add(pMember);
                             pMember.addItem(_qn, DimensionalDoor.getDimensionalDoorRewardId(),
-                                    Rnd.get(7 * DimensionalDoor.getDimensionalDoorRewardRate(),
-                                            10 * DimensionalDoor.getDimensionalDoorRewardRate()), player, true);
+                                20, player, true);
                         }
                         else
                         {

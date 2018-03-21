@@ -28,6 +28,7 @@ import l2server.gameserver.model.actor.instance.L2DoorInstance;
  */
 public class L2DoorAI extends L2CharacterAI
 {
+
 	public L2DoorAI(L2DoorInstance creature)
 	{
 		super(creature);
