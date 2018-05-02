@@ -15,7 +15,7 @@
 
 package l2server.gameserver.model.itemauction;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.L2DatabaseFactory;
 import l2server.gameserver.ThreadPoolManager;
@@ -55,7 +55,7 @@ public final class ItemAuctionInstance
 
 	private final int _instanceId;
 	private final AtomicInteger _auctionIds;
-	private final TIntObjectHashMap<ItemAuction> _auctions;
+	private final Map<Integer,ItemAuction> _auctions;
 	private final ArrayList<AuctionItem> _items;
 	private final AuctionDateGenerator _dateGenerator;
 
@@ -67,7 +67,7 @@ public final class ItemAuctionInstance
 	{
 		_instanceId = instanceId;
 		_auctionIds = auctionIds;
-		_auctions = new TIntObjectHashMap<>();
+		_auctions = new HashMap<>();
 		_items = new ArrayList<>();
 
 		final StatsSet generatorConfig = new StatsSet();
@@ -217,7 +217,7 @@ public final class ItemAuctionInstance
 
 	final void checkAndSetCurrentAndNextAuction()
 	{
-		final ItemAuction[] auctions = _auctions.getValues(new ItemAuction[_auctions.size()]);
+		final ItemAuction[] auctions = _auctions.values().toArray(new ItemAuction[_auctions.values().size()]);
 
 		ItemAuction currentAuction = null;
 		ItemAuction nextAuction = null;
@@ -365,7 +365,7 @@ public final class ItemAuctionInstance
 
 		synchronized (_auctions)
 		{
-			auctions = _auctions.getValues(new ItemAuction[_auctions.size()]);
+			auctions = _auctions.values().toArray(new ItemAuction[_auctions.values().size()]);
 		}
 
 		return auctions;

@@ -15,7 +15,7 @@
 
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.model.L2EnchantSkillLearn;
 import l2server.gameserver.model.L2Skill;
@@ -147,7 +147,7 @@ public class EnchantCostsTable
 		}
 	}
 
-	private TIntObjectHashMap<L2EnchantSkillLearn> _enchantSkillTrees = new TIntObjectHashMap<>();
+	private Map<Integer,L2EnchantSkillLearn> _enchantSkillTrees = new HashMap<>();
 	//enchant skill list
 	private Map<Integer, EnchantSkillRange> _enchantRanges = new HashMap<>();
 	private List<EnchantSkillDetail> _enchantDetails = new ArrayList<>();

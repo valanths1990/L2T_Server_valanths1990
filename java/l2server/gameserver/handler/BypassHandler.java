@@ -15,7 +15,7 @@
 
 package l2server.gameserver.handler;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.log.Log;
 
@@ -27,7 +27,7 @@ import java.util.logging.Level;
 public class BypassHandler
 {
 
-	private TIntObjectHashMap<IBypassHandler> _datatable;
+	private Map<Integer,IBypassHandler> _datatable;
 
 	public static BypassHandler getInstance()
 	{
@@ -36,7 +36,7 @@ public class BypassHandler
 
 	private BypassHandler()
 	{
-		_datatable = new TIntObjectHashMap<>();
+		_datatable = new HashMap<>();
 	}
 
 	public void registerBypassHandler(IBypassHandler handler)

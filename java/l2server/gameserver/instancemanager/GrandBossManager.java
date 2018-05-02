@@ -16,7 +16,7 @@
 package l2server.gameserver.instancemanager;
 
 import gnu.trove.TIntIntHashMap;
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.L2DatabaseFactory;
 import l2server.gameserver.datatables.NpcTable;
@@ -66,7 +66,7 @@ public class GrandBossManager
 
 	protected static Map<Integer, L2GrandBossInstance> _bosses;
 
-	protected static TIntObjectHashMap<StatsSet> _storedInfo;
+	protected static Map<Integer,StatsSet> _storedInfo;
 
 	private TIntIntHashMap _bossStatus;
 
@@ -93,7 +93,7 @@ public class GrandBossManager
 		_zones = new ArrayList<>();
 
 		_bosses = new HashMap<>();
-		_storedInfo = new TIntObjectHashMap<>();
+		_storedInfo = new HashMap<>();
 		_bossStatus = new TIntIntHashMap();
 		Connection con = null;
 		try
@@ -367,7 +367,7 @@ public class GrandBossManager
 
 			PreparedStatement updateStatement1 = con.prepareStatement(UPDATE_GRAND_BOSS_DATA2);
 			PreparedStatement updateStatement2 = con.prepareStatement(UPDATE_GRAND_BOSS_DATA);
-			for (Integer bossId : _storedInfo.keys())
+			for (Integer bossId : _storedInfo.keySet())
 			{
 				L2GrandBossInstance boss = _bosses.get(bossId);
 				StatsSet info = _storedInfo.get(bossId);

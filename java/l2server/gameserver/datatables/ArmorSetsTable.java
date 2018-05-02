@@ -20,7 +20,7 @@
 package l2server.gameserver.datatables;
 
 import gnu.trove.TIntIntHashMap;
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.Reloadable;
 import l2server.gameserver.ReloadableManager;
@@ -37,7 +37,7 @@ import java.io.File;
 public class ArmorSetsTable implements Reloadable
 {
 
-	private TIntObjectHashMap<L2ArmorSet> _armorSets;
+	private Map<Integer,L2ArmorSet> _armorSets;
 
 	public static ArmorSetsTable getInstance()
 	{
@@ -46,7 +46,7 @@ public class ArmorSetsTable implements Reloadable
 
 	private ArmorSetsTable()
 	{
-		_armorSets = new TIntObjectHashMap<>();
+		_armorSets = new HashMap<>();
 		reload();
 
 		ReloadableManager.getInstance().register("armorsets", this);

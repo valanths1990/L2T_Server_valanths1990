@@ -15,7 +15,7 @@
 
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.model.L2Skill;
 import l2server.gameserver.model.L2SkillLearn;
@@ -41,7 +41,7 @@ public class SkillTreeTable
 	private ArrayList<L2SkillLearn> _specialSkillTrees = new ArrayList<>();
 
 	// checker, sorted arrays of hash codes
-	private TIntObjectHashMap<long[]> _skillsByRaceHashCodes; // race-specific transformations
+	private Map<Integer,long[]> _skillsByRaceHashCodes; // race-specific transformations
 	private long[] _allSkillsHashCodes; // fishing, special and all races transformations
 
 	private boolean _loading = true;
@@ -196,7 +196,7 @@ public class SkillTreeTable
 
 		// race-specific skills including dwarven (obtained by fishing)
 		ArrayList<Long> list = new ArrayList<>();
-		TIntObjectHashMap<long[]> result = new TIntObjectHashMap<>(Race.values().length);
+		Map<Integer, long[]> result = new HashMap<>(Race.values().length);
 		for (Race r : Race.values())
 		{
 			for (L2TransformSkillLearn s : _transformSkillTrees)

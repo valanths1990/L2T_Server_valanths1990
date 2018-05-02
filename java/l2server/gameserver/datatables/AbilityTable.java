@@ -15,7 +15,8 @@
 
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap;
+import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.model.actor.instance.L2PcInstance;
 import l2server.log.Log;
@@ -79,7 +80,7 @@ public class AbilityTable
 		}
 	}
 
-	private TIntObjectHashMap<Ability> _abilities = new TIntObjectHashMap<>();
+	private Map<Integer,Ability> _abilities = new HashMap<>();
 
 	private static AbilityTable _instance;
 

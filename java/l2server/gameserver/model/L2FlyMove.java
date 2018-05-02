@@ -15,7 +15,7 @@
 
 package l2server.gameserver.model;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.util.Point3D;
 
 import java.util.ArrayList;
@@ -32,8 +32,8 @@ public class L2FlyMove
 	}
 
 	private int _id;
-	private TIntObjectHashMap<Point3D> _steps = new TIntObjectHashMap<>();
-	private TIntObjectHashMap<L2FlyMoveChoose> _chooses = new TIntObjectHashMap<>();
+	private Map<Integer,Point3D> _steps = new HashMap<>();
+	private Map<Integer,L2FlyMoveChoose> _chooses = new HashMap<>();
 
 	public L2FlyMove(int id)
 	{

@@ -22,6 +22,9 @@ import l2server.gameserver.model.quest.Quest;
 import l2server.gameserver.model.quest.QuestState;
 import l2server.gameserver.model.quest.State;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Gigiikun
  */
@@ -32,7 +35,7 @@ public final class Q692_HowtoOpposeEvil extends Quest
     private static final int LEKONS_CERTIFICATE = 13857;
     private static final int[] QUEST_ITEMS = {13863, 13864, 13865, 13866, 13867, 15535, 15536};
 
-    private static final TIntObjectHashMap<Integer[]> _questMobs = new TIntObjectHashMap<Integer[]>();
+    private static final Map<Integer,Integer[]> _questMobs = new HashMap<>();
 
     static
     {
@@ -260,7 +263,7 @@ public final class Q692_HowtoOpposeEvil extends Quest
     public Q692_HowtoOpposeEvil(int questId, String name, String descr)
     {
         super(questId, name, descr);
-        for (int i : _questMobs.keys())
+        for (int i : _questMobs.keySet())
         {
             addKillId(i);
         }

@@ -15,7 +15,7 @@
 
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.instancemanager.SearchDropManager;
 import l2server.gameserver.model.*;
@@ -48,7 +48,7 @@ import java.util.Set;
  */
 public class NpcTable
 {
-	private TIntObjectHashMap<L2NpcTemplate> _npcs;
+	private Map<Integer,L2NpcTemplate> _npcs;
 
 	public static NpcTable getInstance()
 	{
@@ -63,14 +63,14 @@ public class NpcTable
 	// just wrapper
 	public void reloadAllNpc()
 	{
-		_npcs = new TIntObjectHashMap<>();
+		_npcs = new HashMap<>();
 
 		restoreNpcData(Config.DATAPACK_ROOT + "/" + Config.DATA_FOLDER + "npcs", false);
 
 		// Remove shit drops from highrate servers
 		if (Config.isServer(Config.TENKAI))
 		{
-			for (int npcId : _npcs.keys())
+			for (int npcId : _npcs.keySet())
 			{
 				L2NpcTemplate npc = _npcs.get(npcId);
 				List<L2DropData> dropsToRemove = new ArrayList<>();
@@ -594,7 +594,7 @@ public class NpcTable
 
 	public L2NpcTemplate getTemplateByName(String name)
 	{
-		for (Object npcTemplate : _npcs.getValues())
+		for (Object npcTemplate : _npcs.values())
 		{
 			if (((L2NpcTemplate) npcTemplate).Name.equalsIgnoreCase(name))
 			{
@@ -609,7 +609,7 @@ public class NpcTable
 	{
 		List<L2NpcTemplate> list = new ArrayList<>();
 
-		for (Object t : _npcs.getValues())
+		for (Object t : _npcs.values())
 		{
 			list.add((L2NpcTemplate) t);
 		}
@@ -621,7 +621,7 @@ public class NpcTable
 	{
 		List<L2NpcTemplate> list = new ArrayList<>();
 
-		for (Object t : _npcs.getValues())
+		for (Object t : _npcs.values())
 		{
 			if (((L2NpcTemplate) t).Level == lvl)
 			{
@@ -636,7 +636,7 @@ public class NpcTable
 	{
 		List<L2NpcTemplate> list = new ArrayList<>();
 
-		for (Object t : _npcs.getValues())
+		for (Object t : _npcs.values())
 		{
 			if (((L2NpcTemplate) t).Level == lvl && "L2Monster".equals(((L2NpcTemplate) t).Type))
 			{
@@ -651,7 +651,7 @@ public class NpcTable
 	{
 		List<L2NpcTemplate> list = new ArrayList<>();
 
-		for (Object t : _npcs.getValues())
+		for (Object t : _npcs.values())
 		{
 			if (((L2NpcTemplate) t).Name.startsWith(letter) && "L2Npc".equals(((L2NpcTemplate) t).Type))
 			{
@@ -692,7 +692,7 @@ public class NpcTable
 	{
 		final ArrayList<L2NpcTemplate> list = new ArrayList<>();
 
-		for (final Object t : _npcs.getValues())
+		for (final Object t : _npcs.values())
 		{
 			if ("L2Raidboss".equalsIgnoreCase(((L2NpcTemplate) t).Type))
 			{
@@ -707,7 +707,7 @@ public class NpcTable
 	{
 		final ArrayList<L2NpcTemplate> list = new ArrayList<>();
 
-		for (final Object t : _npcs.getValues())
+		for (final Object t : _npcs.values())
 		{
 			if ("L2Monster".equalsIgnoreCase(((L2NpcTemplate) t).Type))
 			{
@@ -721,7 +721,7 @@ public class NpcTable
 	{
 		final ArrayList<L2NpcTemplate> list = new ArrayList<>();
 
-		for (final Object t : _npcs.getValues())
+		for (final Object t : _npcs.values())
 		{
 			if (type.equalsIgnoreCase(((L2NpcTemplate) t).Type))
 			{
@@ -735,7 +735,7 @@ public class NpcTable
 	{
 		final ArrayList<L2NpcTemplate> list = new ArrayList<>();
 
-		for (final Object t : _npcs.getValues())
+		for (final Object t : _npcs.values())
 		{
 			if (!((L2NpcTemplate) t).Type.equals("L2Monster"))
 			{

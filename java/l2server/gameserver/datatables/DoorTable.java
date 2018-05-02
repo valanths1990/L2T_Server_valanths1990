@@ -15,13 +15,14 @@
 
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.idfactory.IdFactory;
 import l2server.gameserver.instancemanager.ClanHallManager;
 import l2server.gameserver.instancemanager.InstanceManager;
 import l2server.gameserver.model.actor.instance.L2DoorInstance;
 import l2server.gameserver.model.entity.ClanHall;
+import l2server.gameserver.model.itemauction.ItemAuctionInstance;
 import l2server.gameserver.pathfinding.AbstractNodeLoc;
 import l2server.gameserver.templates.StatsSet;
 import l2server.gameserver.templates.chars.L2DoorTemplate;
@@ -36,10 +37,10 @@ import java.util.Set;
 
 public class DoorTable
 {
-	private static final TIntObjectHashMap<Set<Integer>> _groups = new TIntObjectHashMap<>();
+	private static final Map<Integer,Set<Integer>> _groups = new HashMap<>();
 
-	private final TIntObjectHashMap<L2DoorInstance> _doors;
-	private final TIntObjectHashMap<ArrayList<L2DoorInstance>> _regions;
+	private final Map<Integer,L2DoorInstance> _doors;
+	private final Map<Integer,ArrayList<L2DoorInstance>> _regions;
 
 	public static DoorTable getInstance()
 	{
@@ -48,8 +49,8 @@ public class DoorTable
 
 	private DoorTable()
 	{
-		_doors = new TIntObjectHashMap<>();
-		_regions = new TIntObjectHashMap<>();
+		_doors = new HashMap<>();
+		_regions = new HashMap<>();
 		parseData();
 	}
 
@@ -194,7 +195,7 @@ public class DoorTable
 	{
 		_doors.put(door.getDoorId(), door);
 
-		if (_regions.contains(region))
+		if (_regions.containsKey(region))
 		{
 			_regions.get(region).add(door);
 		}
@@ -208,7 +209,7 @@ public class DoorTable
 
 	public L2DoorInstance[] getDoors()
 	{
-		return _doors.getValues(new L2DoorInstance[_doors.size()]);
+		return _doors.values().toArray(new L2DoorInstance[_doors.values().size()]);
 	}
 
 	public boolean checkIfDoorsBetween(AbstractNodeLoc start, AbstractNodeLoc end, int instanceId)

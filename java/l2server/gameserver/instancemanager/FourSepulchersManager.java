@@ -16,7 +16,7 @@
 package l2server.gameserver.instancemanager;
 
 import gnu.trove.TIntIntHashMap;
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.L2DatabaseFactory;
 import l2server.gameserver.ThreadPoolManager;
@@ -100,20 +100,20 @@ public class FourSepulchersManager
 	protected HashMap<Integer, Boolean> _archonSpawned = new HashMap<>();
 	protected HashMap<Integer, Boolean> _hallInUse = new HashMap<>();
 	protected HashMap<Integer, L2PcInstance> _challengers = new HashMap<>();
-	protected TIntObjectHashMap<int[]> _startHallSpawns = new TIntObjectHashMap<>();
+	protected Map<Integer,int[]> _startHallSpawns = new HashMap<>();
 	protected TIntIntHashMap _hallGateKeepers = new TIntIntHashMap();
 	protected TIntIntHashMap _keyBoxNpc = new TIntIntHashMap();
 	protected TIntIntHashMap _victim = new TIntIntHashMap();
-	protected TIntObjectHashMap<L2Spawn> _executionerSpawns = new TIntObjectHashMap<>();
-	protected TIntObjectHashMap<L2Spawn> _keyBoxSpawns = new TIntObjectHashMap<>();
-	protected TIntObjectHashMap<L2Spawn> _mysteriousBoxSpawns = new TIntObjectHashMap<>();
-	protected TIntObjectHashMap<L2Spawn> _shadowSpawns = new TIntObjectHashMap<>();
-	protected TIntObjectHashMap<ArrayList<L2Spawn>> _dukeFinalMobs = new TIntObjectHashMap<>();
-	protected TIntObjectHashMap<ArrayList<L2SepulcherMonsterInstance>> _dukeMobs = new TIntObjectHashMap<>();
-	protected TIntObjectHashMap<ArrayList<L2Spawn>> _emperorsGraveNpcs = new TIntObjectHashMap<>();
-	protected TIntObjectHashMap<ArrayList<L2Spawn>> _magicalMonsters = new TIntObjectHashMap<>();
-	protected TIntObjectHashMap<ArrayList<L2Spawn>> _physicalMonsters = new TIntObjectHashMap<>();
-	protected TIntObjectHashMap<ArrayList<L2SepulcherMonsterInstance>> _viscountMobs = new TIntObjectHashMap<>();
+	protected Map<Integer,L2Spawn> _executionerSpawns = new HashMap<>();
+	protected Map<Integer,L2Spawn> _keyBoxSpawns = new HashMap<>();
+	protected Map<Integer,L2Spawn> _mysteriousBoxSpawns = new HashMap<>();
+	protected Map<Integer,L2Spawn> _shadowSpawns = new HashMap<>();
+	protected Map<Integer,ArrayList<L2Spawn>> _dukeFinalMobs = new HashMap<>();
+	protected Map<Integer,ArrayList<L2SepulcherMonsterInstance>> _dukeMobs = new HashMap<>();
+	protected Map<Integer,ArrayList<L2Spawn>> _emperorsGraveNpcs = new HashMap<>();
+	protected Map<Integer,ArrayList<L2Spawn>> _magicalMonsters = new HashMap<>();
+	protected Map<Integer,ArrayList<L2Spawn>> _physicalMonsters = new HashMap<>();
+	protected Map<Integer,ArrayList<L2SepulcherMonsterInstance>> _viscountMobs = new HashMap<>();
 
 	protected ArrayList<L2Spawn> _physicalSpawns;
 	protected ArrayList<L2Spawn> _magicalSpawns;

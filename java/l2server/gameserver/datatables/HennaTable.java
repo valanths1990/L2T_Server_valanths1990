@@ -15,7 +15,7 @@
 
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.Reloadable;
 import l2server.gameserver.ReloadableManager;
@@ -34,7 +34,7 @@ import java.io.File;
  */
 public class HennaTable implements Reloadable
 {
-	private TIntObjectHashMap<L2Henna> _henna;
+	private Map<Integer,L2Henna> _henna;
 
 	public static HennaTable getInstance()
 	{
@@ -43,7 +43,7 @@ public class HennaTable implements Reloadable
 
 	private HennaTable()
 	{
-		_henna = new TIntObjectHashMap<>();
+		_henna = new HashMap<>();
 		if (!Config.IS_CLASSIC)
 		{
 			restoreHennaData();

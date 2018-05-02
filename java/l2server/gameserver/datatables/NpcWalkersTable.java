@@ -15,7 +15,7 @@
 
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.ai.L2NpcWalkerAI;
 import l2server.gameserver.model.L2NpcWalkerNode;
@@ -38,7 +38,7 @@ import java.util.List;
  */
 public class NpcWalkersTable
 {
-	private TIntObjectHashMap<List<L2NpcWalkerNode>> _routes = new TIntObjectHashMap<>();
+	private Map<Integer,List<L2NpcWalkerNode>> _routes = new HashMap<>();
 
 	public static NpcWalkersTable getInstance()
 	{
@@ -111,7 +111,7 @@ public class NpcWalkersTable
 			}
 		}
 
-		for (Object list : _routes.getValues())
+		for (Object list : _routes.values())
 		{
 			((ArrayList<?>) list).trimToSize();
 		}

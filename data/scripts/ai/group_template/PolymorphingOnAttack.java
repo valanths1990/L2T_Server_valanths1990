@@ -15,7 +15,7 @@
 
 package ai.group_template;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.gameserver.ai.CtrlIntention;
 import l2server.gameserver.model.actor.L2Attackable;
 import l2server.gameserver.model.actor.L2Character;
@@ -30,7 +30,7 @@ import l2server.util.Rnd;
  */
 public class PolymorphingOnAttack extends L2AttackableAIScript
 {
-	private static final TIntObjectHashMap<Integer[]> MOBSPAWNS = new TIntObjectHashMap<Integer[]>();
+	private static final Map<Integer, Integer[]> MOBSPAWNS = new HashMap<>();
 
 	static
 	{
@@ -67,7 +67,7 @@ public class PolymorphingOnAttack extends L2AttackableAIScript
 	public PolymorphingOnAttack(int questId, String name, String descr)
 	{
 		super(questId, name, descr);
-		for (int id : MOBSPAWNS.keys())
+		for (int id : MOBSPAWNS.keySet())
 		{
 			super.addAttackId(id);
 		}

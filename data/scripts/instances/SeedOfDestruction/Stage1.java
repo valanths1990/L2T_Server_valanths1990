@@ -15,7 +15,7 @@
 
 package instances.SeedOfDestruction;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.GeoData;
 import l2server.gameserver.ai.CtrlIntention;
@@ -92,8 +92,8 @@ public class Stage1 extends Quest
 	private static final int MAX_PLAYERS = 45;
 	private static final int MAX_DEVICESPAWNEDMOBCOUNT = 100; // prevent too much mob spawn
 
-	private TIntObjectHashMap<L2Territory> _spawnZoneList = new TIntObjectHashMap<L2Territory>();
-	private TIntObjectHashMap<List<SODSpawn>> _spawnList = new TIntObjectHashMap<List<SODSpawn>>();
+	private Map<Integer,L2Territory> _spawnZoneList = new HashMap<>();
+	private Map<Integer,List<SODSpawn>> _spawnList = new HashMap<>();
 	private List<Integer> _mustKillMobsId = new ArrayList<Integer>();
 
 	// teleports
@@ -206,7 +206,7 @@ public class Stage1 extends Quest
 									continue;
 								}
 								int flag = d.getInt("flag");
-								if (!_spawnList.contains(flag))
+								if (!_spawnList.containsKey(flag))
 								{
 									_spawnList.put(flag, new ArrayList<SODSpawn>());
 								}
@@ -542,7 +542,7 @@ public class Stage1 extends Quest
 					{
 						for (int i = 0; i < spw.count; i++)
 						{
-							if (_spawnZoneList.contains(spw.zone))
+							if (_spawnZoneList.containsKey(spw.zone))
 							{
 								int[] point = _spawnZoneList.get(spw.zone).getRandomPoint();
 								spawn(world, spw.npcId, point[0], point[1], GeoData.getInstance()

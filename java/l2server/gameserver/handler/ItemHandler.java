@@ -15,7 +15,7 @@
 
 package l2server.gameserver.handler;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.gameserver.templates.item.L2EtcItem;
 
 /**
@@ -25,7 +25,7 @@ import l2server.gameserver.templates.item.L2EtcItem;
  */
 public class ItemHandler
 {
-	private TIntObjectHashMap<IItemHandler> _datatable;
+	private Map<Integer,IItemHandler> _datatable;
 
 	/**
 	 * Create ItemHandler if doesn't exist and returns ItemHandler
@@ -52,7 +52,7 @@ public class ItemHandler
 	 */
 	private ItemHandler()
 	{
-		_datatable = new TIntObjectHashMap<>();
+		_datatable = new HashMap<>();
 	}
 
 	/**

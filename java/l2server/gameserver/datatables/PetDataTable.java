@@ -15,7 +15,7 @@
 
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.model.L2PetData;
 import l2server.gameserver.model.L2PetLevelData;
@@ -30,7 +30,7 @@ import java.io.File;
 public class PetDataTable
 {
 
-	private static TIntObjectHashMap<L2PetData> _petTable;
+	private static Map<Integer,L2PetData> _petTable;
 
 	public static PetDataTable getInstance()
 	{
@@ -39,7 +39,7 @@ public class PetDataTable
 
 	private PetDataTable()
 	{
-		_petTable = new TIntObjectHashMap<>();
+		_petTable = new HashMap<>();
 		load();
 	}
 
@@ -199,7 +199,7 @@ public class PetDataTable
 
 	public L2PetData getPetData(int petID)
 	{
-		if (!_petTable.contains(petID))
+		if (!_petTable.containsKey(petID))
 		{
 			Log.info("Missing pet data for npcid: " + petID);
 		}

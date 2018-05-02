@@ -15,7 +15,7 @@
 
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.idfactory.IdFactory;
 import l2server.gameserver.model.L2World;
@@ -33,7 +33,7 @@ import java.io.File;
  */
 public class ShuttleTable
 {
-	private TIntObjectHashMap<L2ShuttleInstance> _shuttles = new TIntObjectHashMap<>();
+	private Map<Integer,L2ShuttleInstance> _shuttles = new HashMap<>();
 
 	private static ShuttleTable _instance;
 

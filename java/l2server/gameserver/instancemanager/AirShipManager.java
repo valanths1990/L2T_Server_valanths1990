@@ -15,7 +15,6 @@
 
 package l2server.gameserver.instancemanager;
 
-import gnu.trove.TIntObjectHashMap;
 import l2server.L2DatabaseFactory;
 import l2server.gameserver.idfactory.IdFactory;
 import l2server.gameserver.model.VehiclePathPoint;
@@ -31,6 +30,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 
 public class AirShipManager
@@ -41,9 +42,9 @@ public class AirShipManager
 	private static final String UPDATE_DB = "UPDATE airships SET fuel=? WHERE owner_id=?";
 
 	private L2CharTemplate _airShipTemplate = null;
-	private TIntObjectHashMap<StatsSet> _airShipsInfo = new TIntObjectHashMap<>();
-	private TIntObjectHashMap<L2AirShipInstance> _airShips = new TIntObjectHashMap<>();
-	private TIntObjectHashMap<AirShipTeleportList> _teleports = new TIntObjectHashMap<>();
+	private Map<Integer,StatsSet> _airShipsInfo = new HashMap<>();
+	private Map<Integer,L2AirShipInstance> _airShips = new HashMap<>();
+	private Map<Integer,AirShipTeleportList> _teleports = new HashMap<>();
 
 	public static AirShipManager getInstance()
 	{
@@ -152,12 +153,12 @@ public class AirShipManager
 
 	public boolean hasAirShipLicense(int ownerId)
 	{
-		return _airShipsInfo.contains(ownerId);
+		return _airShipsInfo.containsKey(ownerId);
 	}
 
 	public void registerLicense(int ownerId)
 	{
-		if (!_airShipsInfo.contains(ownerId))
+		if (!_airShipsInfo.containsKey(ownerId))
 		{
 			final StatsSet info = new StatsSet();
 			info.set("fuel", 600);
@@ -222,7 +223,7 @@ public class AirShipManager
 		}
 
 		int dockId = ship.getDockId();
-		if (!_teleports.contains(dockId))
+		if (!_teleports.containsKey(dockId))
 		{
 			return;
 		}

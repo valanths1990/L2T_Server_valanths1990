@@ -15,7 +15,7 @@
 
 package l2server.gameserver.handler;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.log.Log;
 
@@ -27,7 +27,7 @@ import l2server.log.Log;
 public class ChatHandler
 {
 
-	private TIntObjectHashMap<IChatHandler> _datatable;
+	private Map<Integer,IChatHandler> _datatable;
 
 	public static ChatHandler getInstance()
 	{
@@ -39,7 +39,7 @@ public class ChatHandler
 	 */
 	private ChatHandler()
 	{
-		_datatable = new TIntObjectHashMap<>();
+		_datatable = new HashMap<>();
 	}
 
 	/**

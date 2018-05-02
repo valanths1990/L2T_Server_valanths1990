@@ -15,7 +15,7 @@
 
 package l2server.gameserver.handler;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.log.Log;
 
@@ -27,7 +27,7 @@ import l2server.log.Log;
 public class AdminCommandHandler
 {
 
-	private TIntObjectHashMap<IAdminCommandHandler> _datatable;
+	private Map<Integer,IAdminCommandHandler> _datatable;
 
 	public static AdminCommandHandler getInstance()
 	{
@@ -36,7 +36,7 @@ public class AdminCommandHandler
 
 	private AdminCommandHandler()
 	{
-		_datatable = new TIntObjectHashMap<>();
+		_datatable = new HashMap<>();
 	}
 
 	public void registerAdminCommandHandler(IAdminCommandHandler handler)

@@ -1,6 +1,6 @@
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.Reloadable;
 import l2server.gameserver.ReloadableManager;
@@ -250,8 +250,8 @@ public class EnchantItemTable implements Reloadable
 		}
 	}
 
-	private final TIntObjectHashMap<EnchantScroll> _scrolls = new TIntObjectHashMap<>();
-	private final TIntObjectHashMap<EnchantSupportItem> _supports = new TIntObjectHashMap<>();
+	private final Map<Integer,EnchantScroll> _scrolls = new HashMap<>();
+	private final Map<Integer,EnchantSupportItem> _supports = new HashMap<>();
 
 	private static EnchantItemTable _instance;
 

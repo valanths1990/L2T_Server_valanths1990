@@ -15,7 +15,10 @@
 
 package l2server.gameserver.instancemanager;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap;
+import java.util.Map;
+
+import java.util.HashMap; import java.util.Map;
 import l2server.gameserver.model.L2Transformation;
 import l2server.gameserver.model.actor.instance.L2PcInstance;
 import l2server.log.Log;
@@ -31,11 +34,11 @@ public class TransformationManager
 		return SingletonHolder._instance;
 	}
 
-	private TIntObjectHashMap<L2Transformation> _transformations;
+	private Map<Integer,L2Transformation> _transformations;
 
 	private TransformationManager()
 	{
-		_transformations = new TIntObjectHashMap<>();
+		_transformations = new HashMap<>();
 	}
 
 	public void report()

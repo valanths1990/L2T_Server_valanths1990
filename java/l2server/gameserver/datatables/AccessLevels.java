@@ -15,7 +15,7 @@
 
 package l2server.gameserver.datatables;
 
-import gnu.trove.TIntObjectHashMap;
+import java.util.HashMap; import java.util.Map;
 import l2server.Config;
 import l2server.gameserver.model.L2AccessLevel;
 import l2server.log.Log;
@@ -54,7 +54,7 @@ public class AccessLevels
 	/**
 	 * HashMap of access levels defined in database<br>
 	 */
-	private final TIntObjectHashMap<L2AccessLevel> _accessLevels = new TIntObjectHashMap<>();
+	private final Map<Integer,L2AccessLevel> _accessLevels = new HashMap<>();
 
 	/**
 	 * Returns the one and only instance of this class<br><br>
