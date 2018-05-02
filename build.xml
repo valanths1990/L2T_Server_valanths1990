@@ -18,6 +18,7 @@
 	<property name="build.dist.game.data_classic" location="${build.dist.game}/data_classic" />
 	<property name="build.dist.game.data_tenkai_esthus" location="${build.dist.game}/data_tenkai_esthus" />
 	<property name="build.dist.game.data_tenkai_khadia" location="${build.dist.game}/data_tenkai_khadia" />
+	<property name="build.dist.game.data_tenkai_vasper" location="${build.dist.game}/data_tenkai_vasper" />
 
 	<path id="classpath">
 		<fileset dir="${lib}">
@@ -43,9 +44,10 @@
 		<mkdir dir="${build.dist.game.data_classic}" />
 		<mkdir dir="${build.dist.game.data_tenkai_esthus}" />
 		<mkdir dir="${build.dist.game.data_tenkai_khadia}" />
+		<mkdir dir="${build.dist.game.data_tenkai_vasper}" />
 	</target>
 
-	<target name="compile" depends="version" description="Compile the source.">
+	<target name="compile" depends="init" description="Compile the source.">
 		<javac srcdir="${src}" classpathref="classpath" destdir="${build.classes}" compiler="modern" debug="true" debuglevel="lines,vars,source" includeantruntime="false" source="1.8" target="1.8" />
 	</target>
 
@@ -104,30 +106,6 @@
 		</copy>
 
 		<zip destfile="${build}/L2Tenkai_Server.zip" basedir="${build.dist}" />
-	</target>
-
-	<target name="version" depends="init" description="Create l2tenkai-version.properties file">
-		<tstamp>
-			<format property="build.tstamp" pattern="yyyyMMdd_HHmm" />
-		</tstamp>
-		<exec dir="." executable="svnversion" outputproperty="l2tenkai.revision" failifexecutionfails="false">
-			<arg line="-n ." />
-		</exec>
-		<concat destfile="${build.dist.game.config}/l2tenkai-version.properties">
-            version=${l2tenkai.revision}
-            builddate=${build.tstamp}
-            detailed info:
-        </concat>
-		<concat destfile="${build.dist.game.config}/l2tenkai-version.properties" append="true">
-			<filelist dir="${src}/../.svn/" files="entries" />
-			<filterchain>
-				<prefixlines prefix="		  " />
-				<headfilter lines="8" skip="4" />
-				<tokenfilter>
-					<ignoreblank />
-				</tokenfilter>
-			</filterchain>
-		</concat>
 	</target>
 
 	<target name="clean" description="Remove the output directories">
