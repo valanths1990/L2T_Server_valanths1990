@@ -198,17 +198,16 @@ public class FarmZoneManager
 						{
 							String name = farmNode.getString("farmZone");
 							FarmZone farmZone = _farmZones.get(name);
-							if (farmZone == null)
-							{
-								Log.log(Level.WARNING, "FarmZoneManager: Could not find custom zone: " + name);
-							}
-
 							if (farmZone != null)
 							{
 								for (L2NpcTemplate mob : farmZone.getMobs())
 								{
 									mobs.add(mob);
 								}
+							}
+							else
+							{
+								Log.log(Level.WARNING, "FarmZoneManager: Could not find custom zone: " + name);
 							}
 						}
 						else if (farmNode.hasAttribute("levelRange"))
