@@ -39,6 +39,7 @@ import java.util.Map;
 
 public final class Config
 {
+	// test
 	public static final int DEFAULT = 0x01;
 	public static final int TENKAI = 0x02;
 	public static final int TENKAI_VASPER = 0x20;
