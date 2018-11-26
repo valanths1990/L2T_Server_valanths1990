@@ -30,6 +30,7 @@ import l2server.util.xml.XmlNode;
 
 import java.io.File;
 import java.util.*;
+import java.util.logging.Level;
 
 /**
  * @author Pere
@@ -197,9 +198,17 @@ public class FarmZoneManager
 						{
 							String name = farmNode.getString("farmZone");
 							FarmZone farmZone = _farmZones.get(name);
-							for (L2NpcTemplate mob : farmZone.getMobs())
+							if (farmZone == null)
 							{
-								mobs.add(mob);
+								Log.log(Level.WARNING, "FarmZoneManager: Could not find custom zone: " + name);
+							}
+
+							if (farmZone != null)
+							{
+								for (L2NpcTemplate mob : farmZone.getMobs())
+								{
+									mobs.add(mob);
+								}
 							}
 						}
 						else if (farmNode.hasAttribute("levelRange"))
