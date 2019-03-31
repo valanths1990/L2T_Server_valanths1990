@@ -286,6 +286,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 			}
 		}
 
+		Log.log(Level.WARNING, "Sending packet: " + gsp.getClass().getSimpleName());
+
 		getConnection().sendPacket(gsp);
 		gsp.runImpl();
 	}
