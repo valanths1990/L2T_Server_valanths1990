@@ -18,6 +18,7 @@
 	<property name="build.dist.game.data_classic" location="${build.dist.game}/data_classic" />
 	<property name="build.dist.game.data_tenkai_esthus" location="${build.dist.game}/data_tenkai_esthus" />
 	<property name="build.dist.game.data_tenkai_khadia" location="${build.dist.game}/data_tenkai_khadia" />
+	<property name="build.dist.game.data_tenkai_legacy" location="${build.dist.game}/data_tenkai_legacy" />
 	<property name="build.dist.game.data_tenkai_vasper" location="${build.dist.game}/data_tenkai_vasper" />
 
 	<path id="classpath">
@@ -44,6 +45,7 @@
 		<mkdir dir="${build.dist.game.data_classic}" />
 		<mkdir dir="${build.dist.game.data_tenkai_esthus}" />
 		<mkdir dir="${build.dist.game.data_tenkai_khadia}" />
+		<mkdir dir="${build.dist.game.data_tenkai_legacy}" />
 		<mkdir dir="${build.dist.game.data_tenkai_vasper}" />
 	</target>
 
@@ -103,6 +105,14 @@
 
 		<copy todir="${build.dist.game.data_tenkai_khadia}">
 			<fileset dir="${src}/../data_tenkai_khadia" includes ="**" />
+		</copy>
+		
+		<copy todir="${build.dist.game.data_tenkai_legacy}">
+			<fileset dir="${src}/../data_tenkai_legacy" includes ="**" />
+		</copy>
+		
+		<copy todir="${build.dist.game.data_tenkai_vasper}">
+			<fileset dir="${src}/../data_tenkai_vasper" includes ="**" />
 		</copy>
 
 		<zip destfile="${build}/L2Tenkai_Server.zip" basedir="${build.dist}" />
