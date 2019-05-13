@@ -336,7 +336,6 @@ public class Christmas extends Quest
 		return "";
 	}
 
-	@SuppressWarnings("unused")
 	@Override
 	public String onAdvEvent(String event, L2Npc npc, L2PcInstance player)
 	{
